@@ -200,9 +200,6 @@ public class DelfiTest {
         int posCount = -1;
         String commentCountTitle = "";
 
-        //LOGGER.info("PageTitle: " + driver.getTitle());
-        //LOGGER.info("PageSource:   "+driver.getPageSource());
-
         LOGGER.info("Calculate total comments: registered and anonymous");
         List<WebElement> commentButtons = driver.findElements(COMMENTS);
         LOGGER.info("Size: " + commentButtons.size());
