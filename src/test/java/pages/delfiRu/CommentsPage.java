@@ -34,12 +34,12 @@ public class CommentsPage {
      *
      * @return - List of buttons items wrappers
      */
-    private List<CommentPageWrapper> getAllTopArticles() {
+    private List<CommentButtonWrapper> getCommentButtons() {
         List<WebElement> commentButtons = commonFunctions.findElements(COMMENTS);
-        List<CommentPageWrapper> result = new ArrayList<CommentPageWrapper>();
-        Iterables.addAll(result, Iterables.transform(commentButtons, new Function<WebElement, CommentPageWrapper>() {
-            public CommentPageWrapper apply(WebElement webElement) {
-                return new CommentPageWrapper(commonFunctions, webElement);
+        List<CommentButtonWrapper> result = new ArrayList<CommentButtonWrapper>();
+        Iterables.addAll(result, Iterables.transform(commentButtons, new Function<WebElement, CommentButtonWrapper>() {
+            public CommentButtonWrapper apply(WebElement webElement) {
+                return new CommentButtonWrapper(commonFunctions, webElement);
             }
         }));
         return result;
@@ -57,10 +57,10 @@ public class CommentsPage {
         int posCount = -1;
         String commentCountTitle = "";
 
-        List<CommentPageWrapper> commentButtons = getAllTopArticles();
+        List<CommentButtonWrapper> commentButtons = getCommentButtons();
         LOGGER.info("Size: " + commentButtons.size());
 
-        for (CommentPageWrapper commentButton : commentButtons) {
+        for (CommentButtonWrapper commentButton : commentButtons) {
             buttonTitle = commentButton.getButtonTitle();
             commentType = commentButton.getCommentType();
             commentCountTitle = commentButton.getButtonComment();

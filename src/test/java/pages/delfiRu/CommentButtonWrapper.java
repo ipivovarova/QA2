@@ -6,19 +6,19 @@ import org.openqa.selenium.WebElement;
 /**
  * Created by Inga on 29/04/2017.
  */
-public class CommentPageWrapper {
+public class CommentButtonWrapper {
     private final CommonFunctions commonFunctions;
     private final WebElement rootElement;
 
     /*
     * constructor
     */
-    public CommentPageWrapper(CommonFunctions commonFunctions) {
+    public CommentButtonWrapper(CommonFunctions commonFunctions) {
         rootElement = null;
         this.commonFunctions = commonFunctions;
     }
 
-    public CommentPageWrapper(CommonFunctions commonFunctions, WebElement element) {
+    public CommentButtonWrapper(CommonFunctions commonFunctions, WebElement element) {
         rootElement = element;
         this.commonFunctions = commonFunctions;
     }
@@ -27,37 +27,30 @@ public class CommentPageWrapper {
         return rootElement.getText();
     }
 
+
     /*
-    * Returm string of comment type from comment button
+    * Return comment type from comment button
     *
-    * @param buttonTitle - common button title
     * @return commentType  from title comment button
      */
-    private String getCommentType(String buttonTitle) {
+    public String getCommentType() {
         String commentType = "";
+        String buttonTitle = this.getButtonTitle();
         int posBkt = getPositionComment(buttonTitle);
-        if (posBkt >= 0) {
+        if (posBkt > 0) {
             commentType = buttonTitle.substring(0, posBkt - 1).trim();
         }
         return commentType;
     }
 
     /*
-    * Returm string of comment type from comment button
-    *
-    * @return commentType  from title comment button
-     */
-    public String getCommentType() {
-        return getCommentType(getButtonTitle());
-    }
-
-    /*
-    * Returm string of comment count from comment button
+    * Return comment count from comment button
     *
     * @return commentCount  from title comment button
      */
-    private String getButtonComment(String buttonTitle) {
+    public String getButtonComment() {
         String commentCount = "";
+        String buttonTitle = this.getButtonTitle();
         int posBkt = getPositionComment(buttonTitle);
         if (posBkt >= 0) {
             commentCount = buttonTitle.substring(posBkt).trim();
@@ -66,16 +59,7 @@ public class CommentPageWrapper {
     }
 
     /*
-    * Returm string of comment count from comment button
-    *
-    * @return commentCount  from title comment button
-     */
-    public String getButtonComment() {
-        return getButtonComment(getButtonTitle());
-    }
-
-    /*
-    * Return position simbol "(" (start comment count)
+    * Return position symbol "(" (start comment count)
     *
     * @return position "("
      */
