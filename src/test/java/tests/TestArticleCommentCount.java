@@ -43,7 +43,7 @@ public class TestArticleCommentCount {
         LOGGER.info("Comment count on first page: " + countCommentFirstArticle);
 
         LOGGER.info("Open selected article");
-        ArticlePage articlePage = homePage.openArticle(ARTICLE_ORDER);
+        ArticlePage articlePage = homePage.openArticleByOrder(ARTICLE_ORDER);
 
         LOGGER.info("Getting comment count from the title on article page ");
         String titleArticlePage = articlePage.getArticleTitle();

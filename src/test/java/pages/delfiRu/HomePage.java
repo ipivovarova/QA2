@@ -10,6 +10,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -72,7 +73,7 @@ public class HomePage {
 /*    public TopArticleWrapper getArticleByName(final String name) {
         Optional<TopArticleWrapper> wrapper = Iterables.tryFind(getAllTopArticles(), new Predicate<TopArticleWrapper>() {
             public boolean apply(TopArticleWrapper topArticleWrapper) {
-                return topArticleWrapper.getArticleName().contains(name);
+                return topArticleWrapper.getArticleName().equalsIgnoreCase(name);
             }
         });
         return wrapper.get();
@@ -80,18 +81,37 @@ public class HomePage {
 */
 
     /**
+     * Method returns article wrapper by name
+     *
+     * @param name of article item
+     *
+     * @return - selected article item wrapper
+     */
+    public TopArticleWrapper getArticleByName(final String name) throws NullPointerException {
+        List<TopArticleWrapper> topArticleWrappers = getAllTopArticles();
+        TopArticleWrapper article = null;
+        for (TopArticleWrapper topArticleWrapper: topArticleWrappers) {
+            if (topArticleWrapper.getArticleName().contains(name)) {
+                article = topArticleWrapper;
+                break;
+            }
+        } 
+        return article;
+    }
+
+
+    /**
      * This method selects article by name and return new page with selected article
      *
      * @param name - article name
      * @return article page
      */
-/*    public ArticlePage openArticle(String name) {
+    public ArticlePage openArticleByName(String name) {
         TopArticleWrapper article = getArticleByName(name);
         article.clickArticleName();
-        LOGGER.info("User clicked on the " + name + " article");
+        LOGGER.info("User clicked on the article:" + name);
         return new ArticlePage(commonFunctions);
     }
-*/
 
     /**
      * This method selects article by order and return new page with selected article
@@ -99,12 +119,35 @@ public class HomePage {
      * @param order - article order
      * @return article page
      */
-    public ArticlePage openArticle(final int order) {
+    public ArticlePage openArticleByOrder(final int order) {
         TopArticleWrapper article = getArticleByOrder(order);
         article.clickArticleName();
         LOGGER.info("User clicked on the " + order + " article");
         return new ArticlePage(commonFunctions);
     }
 
+    /**
+     * This method selects article by name and return new page with selected article
+     *
+     * @param article - TopArticleWrapper article
+     * @return article page
+     */
+    public ArticlePage openArticle(TopArticleWrapper article) {
+        article.clickArticleName();
+        LOGGER.info("User clicked on the name of the article: "  + article.getArticleName());
+        return new ArticlePage(commonFunctions);
+    }
+
+    /**
+     * This method selects article by name and return new page with selected article
+     *
+     * @param article - TopArticleWrapper article
+     * @return article page
+     */
+    public CommentsPage openComments(TopArticleWrapper article) {
+        article.clickArticleCommentCount();
+        LOGGER.info("User clicked on the comment count of the article:" + article.getArticleName());
+        return new CommentsPage(commonFunctions);
+    }
 
 }

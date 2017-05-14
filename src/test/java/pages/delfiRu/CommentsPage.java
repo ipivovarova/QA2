@@ -16,8 +16,8 @@ import java.util.List;
 public class CommentsPage {
     private final CommonFunctions commonFunctions;
     private static final long WAIT_MILL = 30;
-    private static final By COMMENTS_LIST = By.id("comments-listing");
-    private static final By COMMENTS = By.xpath("//*[contains(@class, 'comment-thread-switcher-list-a ')]");
+    private static final By COMMENTS_LISTING = By.id("comments-listing");
+    private static final By COMMENTS_BUTTON = By.xpath("//*[contains(@class, 'comment-thread-switcher-list-a ')]");
     private static final Logger LOGGER = Logger.getLogger(HomePage.class);
 
     /*
@@ -25,7 +25,7 @@ public class CommentsPage {
     */
     public CommentsPage(CommonFunctions commonFunctions) {
         this.commonFunctions = commonFunctions;
-        commonFunctions.waitDisplayElement(COMMENTS_LIST, WAIT_MILL);
+        commonFunctions.waitDisplayElement(COMMENTS_LISTING, WAIT_MILL);
         LOGGER.info("Article page loaded");
     }
 
@@ -35,7 +35,7 @@ public class CommentsPage {
      * @return - List of buttons items wrappers
      */
     private List<CommentButtonWrapper> getCommentButtons() {
-        List<WebElement> commentButtons = commonFunctions.findElements(COMMENTS);
+        List<WebElement> commentButtons = commonFunctions.findElements(COMMENTS_BUTTON);
         List<CommentButtonWrapper> result = new ArrayList<CommentButtonWrapper>();
         Iterables.addAll(result, Iterables.transform(commentButtons, new Function<WebElement, CommentButtonWrapper>() {
             public CommentButtonWrapper apply(WebElement webElement) {
@@ -54,7 +54,6 @@ public class CommentsPage {
         int totalCount = 0;
         String buttonTitle = "";
         String commentType = "";
-        int posCount = -1;
         String commentCountTitle = "";
 
         List<CommentButtonWrapper> commentButtons = getCommentButtons();
@@ -70,6 +69,24 @@ public class CommentsPage {
             }
         }
         return totalCount;
+    }
+
+    public int getRealTotalComments() {
+        int totalComments =0;
+        List<CommentButtonWrapper> commentButtons = getCommentButtons();
+        for (CommentButtonWrapper commentButton : commentButtons) {
+            // we click on the button and main comments list is displied;
+            CommentsListPage commentListPage = getCommentsList(commentButton);
+            totalComments += commentListPage.getCommentsCount();
+
+        }
+        return totalComments;
+    }
+
+    private CommentsListPage getCommentsList(CommentButtonWrapper commentButton) {
+        commentButton.clickButton();
+        LOGGER.info("User clicked on the comment button");
+        return new CommentsListPage(commonFunctions);
     }
 
 }

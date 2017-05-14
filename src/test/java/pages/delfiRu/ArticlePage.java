@@ -12,9 +12,10 @@ public class ArticlePage {
     private final CommonFunctions commonFunctions;
     public static final By COUNTER = By.className("comment-count");
     private static final long WAIT_MILL = 30;
-    private static final By HEADER_ARTICLE = By.xpath("//*h1[@class='article-title']");
+    private static final By HEADER_ARTICLE = By.xpath("//h1[@class='article-title']");
     private static final By TITLE_ARTICLE = By.xpath("./span");
     private static final By COMMENT_COUNT = By.xpath("./a[@class='comment-count']");
+   // private static WebElement articleTitle;
     private static final Logger LOGGER = Logger.getLogger(HomePage.class);
 
     /*
@@ -22,15 +23,18 @@ public class ArticlePage {
      */
     public ArticlePage(CommonFunctions commonFunctions) {
         this.commonFunctions = commonFunctions;
-        commonFunctions.waitDisplayElement(COUNTER, WAIT_MILL);
+        commonFunctions.waitDisplayElement(HEADER_ARTICLE, WAIT_MILL);
+        //articleTitle = commonFunctions.getElement(HEADER_ARTICLE);
         LOGGER.info("Article page loaded");
     }
 
     public WebElement findArticleHeader() {
+        WebElement aaa = commonFunctions.getElement(HEADER_ARTICLE);
         return commonFunctions.getElement(HEADER_ARTICLE);
     }
 
     public WebElement findArticleCommentCount() {
+        WebElement bbb = findArticleHeader().findElement(COMMENT_COUNT);
         return findArticleHeader().findElement(COMMENT_COUNT);
     }
 
@@ -43,7 +47,7 @@ public class ArticlePage {
      *
      * @return - string with comment count
      */
-    public String getArticleCommentCount() {
+    private String getArticleCommentCount() {
         String comment = "";
         try {
             comment = findArticleHeader().findElement(COMMENT_COUNT).getText();
@@ -70,8 +74,9 @@ public class ArticlePage {
         return count;
     }
 
-    public void clickArticleCommentCount() {
-        findArticleCommentCount().click();
+    private void clickArticleCommentCount() {
+        commonFunctions.getElement(COUNTER).click();
+        //findArticleCommentCount().click();
     }
 
 

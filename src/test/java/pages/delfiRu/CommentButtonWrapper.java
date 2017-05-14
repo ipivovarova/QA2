@@ -58,6 +58,10 @@ public class CommentButtonWrapper {
         return commentCount;
     }
 
+    public void clickButton() {
+        rootElement.click();
+    }
+
     /*
     * Return position symbol "(" (start comment count)
     *
