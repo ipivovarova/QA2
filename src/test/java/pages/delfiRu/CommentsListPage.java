@@ -24,17 +24,16 @@ public class CommentsListPage {
     public CommentsListPage(CommonFunctions commonFunctions) {
         this.commonFunctions = commonFunctions;
         commonFunctions.waitDisplayElement(COMMENTS_LIST, WAIT_MILL);
-        //articleTitle = commonFunctions.getElement(HEADER_ARTICLE);
         LOGGER.info("Comment list page (by button) loaded");
     }
 
     /**
      * Method collects main comments items
-     *
+     * @param classElement - class name element
      * @return - List of comments items wrappers
      */
-    private List<CommentsWrapper> getCommentsList() {
-        List<WebElement> commentsList = commonFunctions.findElements(COMMENT);
+    private List<CommentsWrapper> getCommentsList(By classElement) {
+        List<WebElement> commentsList = commonFunctions.findElements(classElement);
         List<CommentsWrapper> result = new ArrayList<CommentsWrapper>();
         Iterables.addAll(result, Iterables.transform(commentsList, new Function<WebElement, CommentsWrapper>() {
             public CommentsWrapper apply(WebElement webElement) {
@@ -50,36 +49,18 @@ public class CommentsListPage {
       * @return comments count
      */
     public int getCommentsCount() {
-        List<CommentsWrapper> comments = getCommentsList();
-        return comments.size();
-
+        return  getCommentsListCount(COMMENT) + getCommentsListCount(COMMENT_REPLIES);
     }
 
-    /**
-     * Method collects main comments items
-     *
-     * @return - List of comments items wrappers
-     */
-    private List<CommentsRepliesWrapper> getCommentsRepliesList() {
-        List<WebElement> commentsRepliesList = commonFunctions.findElements(COMMENT_REPLIES);
-        List<CommentsRepliesWrapper> result = new ArrayList<CommentsRepliesWrapper>();
-        Iterables.addAll(result, Iterables.transform(commentsRepliesList, new Function<WebElement, CommentsRepliesWrapper>() {
-            public CommentsRepliesWrapper apply(WebElement webElement) {
-                return new CommentsRepliesWrapper(commonFunctions, webElement);
-            }
-        }));
-        return result;
-    }
 
     /*
-      * Return  comments count
-      *
-      * @return comments count
+      * Return comments count from list
+      * @param classElement - class name element
+      * @return comments count from list
      */
-    public int getCommentsRepliesCount() {
-        List<CommentsRepliesWrapper> commentsReplies = getCommentsRepliesList();
-        return commentsReplies.size();
-
+    public int getCommentsListCount(By classElement) {
+        List<CommentsWrapper> comments = getCommentsList(classElement);
+        return comments.size();
     }
 
 }

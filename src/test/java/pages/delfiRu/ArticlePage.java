@@ -15,7 +15,6 @@ public class ArticlePage {
     private static final By HEADER_ARTICLE = By.xpath("//h1[@class='article-title']");
     private static final By TITLE_ARTICLE = By.xpath("./span");
     private static final By COMMENT_COUNT = By.xpath("./a[@class='comment-count']");
-   // private static WebElement articleTitle;
     private static final Logger LOGGER = Logger.getLogger(HomePage.class);
 
     /*
@@ -24,7 +23,6 @@ public class ArticlePage {
     public ArticlePage(CommonFunctions commonFunctions) {
         this.commonFunctions = commonFunctions;
         commonFunctions.waitDisplayElement(HEADER_ARTICLE, WAIT_MILL);
-        //articleTitle = commonFunctions.getElement(HEADER_ARTICLE);
         LOGGER.info("Article page loaded");
     }
 

@@ -71,6 +71,11 @@ public class CommentsPage {
         return totalCount;
     }
 
+    /*
+      * Return total comment from comments list after click on the buttons (registered and anonymous)
+      *
+      * @return total count of the real comments
+     */
     public int getRealTotalComments() {
         int totalComments =0;
         List<CommentButtonWrapper> commentButtons = getCommentButtons();
@@ -78,7 +83,6 @@ public class CommentsPage {
             // we click on the button and main comments list is displied;
             CommentsListPage commentListPage = getCommentsList(commentButton);
             totalComments += commentListPage.getCommentsCount();
-
         }
         return totalComments;
     }

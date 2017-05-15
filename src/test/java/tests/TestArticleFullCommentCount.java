@@ -46,7 +46,8 @@ public class TestArticleFullCommentCount {
         CommentsPage commentsPage =  articlePage.openComments();
 
         LOGGER.info("Getting total count of comments (registered and anonymous)");
-        int totalComment = commentsPage.getTotalComment();
+//        int totalComment = commentsPage.getTotalComment();
+        int totalComment = commentsPage.getRealTotalComments();
 
         LOGGER.info("Check comments count from total registered and anonymous comments");
         Assert.assertEquals("wrong comment count on article page", countCommentFirstArticle, totalComment, 0);
