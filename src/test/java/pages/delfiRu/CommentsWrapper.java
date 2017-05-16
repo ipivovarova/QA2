@@ -11,6 +11,7 @@ public class CommentsWrapper {
     private final CommonFunctions commonFunctions;
     private final WebElement rootElement;
     private static final By COMMENT_CONTENT = By.className("comment-content-inner");
+    private static final By COMMENTS_PAGER = By.className("comments-pager comments-pager-top");
 
     /*
     * constructor

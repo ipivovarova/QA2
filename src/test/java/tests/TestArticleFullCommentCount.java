@@ -17,7 +17,7 @@ import pages.delfiRu.TopArticleWrapper;
 public class TestArticleFullCommentCount {
     private CommonFunctions commonFunctions = new CommonFunctions();
     private static final String WEB_SITE_URL = "http://rus.delfi.lv";
-    private static final String ARTICLE_NAME = "В понедельник ожидаются дожди и грозы";
+    private static final String ARTICLE_NAME = "Полиция безопасности признала экс-сотрудника БПБК подозреваемым в деле о разглашении гостайны";
     private static final Logger LOGGER = Logger.getLogger(DelfiTest.class);
 
     @Test
@@ -33,7 +33,7 @@ public class TestArticleFullCommentCount {
         LOGGER.info("Find article by name");
         TopArticleWrapper article = homePage.getArticleByName(ARTICLE_NAME);
 
-        LOGGER.info("Getting title and comment count for fended article");
+        LOGGER.info("Getting title and comment count for selected article");
         String titleArticle = article.getArticleName();
         int countCommentFirstArticle = commonFunctions.getCountFromString(article.getArticleCommentCount());
         LOGGER.info("Article title on the selected article: " + titleArticle);

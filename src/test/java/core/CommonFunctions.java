@@ -86,6 +86,15 @@ public class CommonFunctions {
     }
 
     /**
+     * Method to clock on specific element
+     *
+     * @param element element to click
+     */
+    public void click(By element) {
+        webDriver.findElement(element).click();
+    }
+
+    /**
      * This method created to pause test - needs to wait for data refresh or receiving mail message
      *
      * @param mills time to wait in milliseconds

@@ -15,10 +15,11 @@ import java.util.List;
  */
 public class CommentsListPage {
     private final CommonFunctions commonFunctions;
-    private static final long WAIT_MILL = 30;
+    private static final long WAIT_MILL = 50;
     private static final By COMMENTS_LIST = By.id("comments-list");
     private static final By COMMENT = By.className("comment-content");
     private static final By COMMENT_REPLIES = By.className("comments-list-replies");
+    private static final By COMMENTS_PAGER = By.className("comments-pager comments-pager-top");
     private static final Logger LOGGER = Logger.getLogger(HomePage.class);
 
     public CommentsListPage(CommonFunctions commonFunctions) {
@@ -58,9 +59,20 @@ public class CommentsListPage {
       * @param classElement - class name element
       * @return comments count from list
      */
-    public int getCommentsListCount(By classElement) {
+    private int getCommentsListCount(By classElement) {
         List<CommentsWrapper> comments = getCommentsList(classElement);
         return comments.size();
+    }
+
+    public boolean isPager() {
+        return commonFunctions.getElement(COMMENTS_PAGER).isEnabled();
+    }
+
+    public CommentsListPage clickNextPage() throws Exception {
+        CommentsPagerWrapper pagerWrapper =
+                new CommentsPagerWrapper(commonFunctions, commonFunctions.getElement(COMMENTS_PAGER));
+        CommentsListPage nextPage = pagerWrapper.gotoNextPage();
+        return nextPage;
     }
 
 }

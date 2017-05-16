@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class CommentsPage {
     private final CommonFunctions commonFunctions;
-    private static final long WAIT_MILL = 30;
+    private static final long WAIT_MILL = 50;
     private static final By COMMENTS_LISTING = By.id("comments-listing");
     private static final By COMMENTS_BUTTON = By.xpath("//*[contains(@class, 'comment-thread-switcher-list-a ')]");
     private static final Logger LOGGER = Logger.getLogger(HomePage.class);
@@ -26,7 +26,7 @@ public class CommentsPage {
     public CommentsPage(CommonFunctions commonFunctions) {
         this.commonFunctions = commonFunctions;
         commonFunctions.waitDisplayElement(COMMENTS_LISTING, WAIT_MILL);
-        LOGGER.info("Article page loaded");
+        LOGGER.info("Comment page of article loaded");
     }
 
     /**
@@ -65,7 +65,7 @@ public class CommentsPage {
             commentCountTitle = commentButton.getButtonComment();
             if (!buttonTitle.isEmpty()) {
                 LOGGER.info("Comment type: " + commentType + ". Comment count: " + commentCountTitle);
-                totalCount = totalCount + commonFunctions.getCountFromString(commentCountTitle);
+                totalCount += commonFunctions.getCountFromString(commentCountTitle);
             }
         }
         return totalCount;
@@ -77,12 +77,17 @@ public class CommentsPage {
       * @return total count of the real comments
      */
     public int getRealTotalComments() {
-        int totalComments =0;
+        int totalComments = 0;
         List<CommentButtonWrapper> commentButtons = getCommentButtons();
         for (CommentButtonWrapper commentButton : commentButtons) {
-            // we click on the button and main comments list is displied;
+            // we click on the button and main comments list is displayed;
             CommentsListPage commentListPage = getCommentsList(commentButton);
+            // calculate registered and anonymous comments
             totalComments += commentListPage.getCommentsCount();
+            // it's a next page?
+            if (commentListPage.isPager()) {
+
+            }
         }
         return totalComments;
     }
