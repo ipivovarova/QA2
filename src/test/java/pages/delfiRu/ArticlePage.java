@@ -27,12 +27,10 @@ public class ArticlePage {
     }
 
     public WebElement findArticleHeader() {
-        WebElement aaa = commonFunctions.getElement(HEADER_ARTICLE);
         return commonFunctions.getElement(HEADER_ARTICLE);
     }
 
     public WebElement findArticleCommentCount() {
-        WebElement bbb = findArticleHeader().findElement(COMMENT_COUNT);
         return findArticleHeader().findElement(COMMENT_COUNT);
     }
 
@@ -45,15 +43,8 @@ public class ArticlePage {
      *
      * @return - string with comment count
      */
-    private String getArticleCommentCount() {
-        String comment = "";
-        try {
-            comment = findArticleHeader().findElement(COMMENT_COUNT).getText();
-        }
-        catch (Exception e) {
-            // Do nothing
-        }
-        return comment;
+    private String getArticleCommentCount() throws Exception {
+        return findArticleHeader().findElement(COMMENT_COUNT).getText();
     }
 
     /*
@@ -61,20 +52,13 @@ public class ArticlePage {
      *
      * @return - comment count
      */
-    public int getCommentCount() {
-        int count = 0;
-        try {
-            count = commonFunctions.getCountFromString(getArticleCommentCount());
-        }
-        catch (Exception e) {
-            // Do nothing
-        }
-        return count;
+    public int getCommentCount() throws Exception {
+        return commonFunctions.getCountFromString(getArticleCommentCount());
+
     }
 
     private void clickArticleCommentCount() {
         commonFunctions.getElement(COUNTER).click();
-        //findArticleCommentCount().click();
     }
 
 

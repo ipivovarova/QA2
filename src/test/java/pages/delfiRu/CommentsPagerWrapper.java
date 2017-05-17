@@ -14,18 +14,14 @@ public class CommentsPagerWrapper {
     private static final By NEXT_PAGE = By.xpath("./a[@class='comments-pager-page']");
     private static final By LAST_PAGE = By.className("comments-pager-arrow-last");
     private static final By FIRST_PAGE = By.className("comments-pager-arrow-first");
+    private static final By COMMENTS_PAGER = By.className("comments-pager comments-pager-top");
 
     /*
     * constructor
     */
     public CommentsPagerWrapper(CommonFunctions commonFunctions)  {
-        rootElement = null;
         this.commonFunctions = commonFunctions;
-    }
-
-    public CommentsPagerWrapper(CommonFunctions commonFunctions, WebElement element) {
-        rootElement = element;
-        this.commonFunctions = commonFunctions;
+        rootElement = commonFunctions.getElement(COMMENTS_PAGER);
     }
 
     public String getPageSelected() {
@@ -50,5 +46,8 @@ public class CommentsPagerWrapper {
         rootElement.findElement(FIRST_PAGE).click();
         return new CommentsListPage(commonFunctions);
     }
+
+
+
 
 }

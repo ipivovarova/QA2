@@ -17,7 +17,7 @@ import pages.delfiRu.TopArticleWrapper;
 public class TestArticleFullCommentCount {
     private CommonFunctions commonFunctions = new CommonFunctions();
     private static final String WEB_SITE_URL = "http://rus.delfi.lv";
-    private static final String ARTICLE_NAME = "Полиция безопасности признала экс-сотрудника БПБК подозреваемым в деле о разглашении гостайны";
+    private static final String ARTICLE_NAME = "Российский визовый центр в Риге меняет партнера и адрес";
     private static final Logger LOGGER = Logger.getLogger(DelfiTest.class);
 
     @Test

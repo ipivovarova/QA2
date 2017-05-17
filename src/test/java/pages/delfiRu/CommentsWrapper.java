@@ -16,10 +16,6 @@ public class CommentsWrapper {
     /*
     * constructor
     */
-    public CommentsWrapper(CommonFunctions commonFunctions)  {
-        rootElement = null;
-        this.commonFunctions = commonFunctions;
-    }
 
     public CommentsWrapper(CommonFunctions commonFunctions, WebElement element) {
         rootElement = element;

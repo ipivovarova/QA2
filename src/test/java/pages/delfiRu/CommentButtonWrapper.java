@@ -13,10 +13,6 @@ public class CommentButtonWrapper {
     /*
     * constructor
     */
-    public CommentButtonWrapper(CommonFunctions commonFunctions) {
-        rootElement = null;
-        this.commonFunctions = commonFunctions;
-    }
 
     public CommentButtonWrapper(CommonFunctions commonFunctions, WebElement element) {
         rootElement = element;

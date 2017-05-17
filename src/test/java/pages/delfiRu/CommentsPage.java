@@ -84,9 +84,16 @@ public class CommentsPage {
             CommentsListPage commentListPage = getCommentsList(commentButton);
             // calculate registered and anonymous comments
             totalComments += commentListPage.getCommentsCount();
-            // it's a next page?
-            if (commentListPage.isPager()) {
-
+             // is exist a next page?
+            if (commentListPage.isCommentsPager()) {
+                while (true) {
+                    try {
+                        CommentsPagerWrapper commentsPager = new CommentsPagerWrapper(commonFunctions);
+                        CommentsListPage nextPage = commentsPager.gotoNextPage();
+                        totalComments += nextPage.getCommentsCount();
+                    }
+                    catch (Exception e) {break;}
+                }
             }
         }
         return totalComments;

@@ -64,15 +64,9 @@ public class CommentsListPage {
         return comments.size();
     }
 
-    public boolean isPager() {
+    public boolean isCommentsPager() {
         return commonFunctions.getElement(COMMENTS_PAGER).isEnabled();
     }
 
-    public CommentsListPage clickNextPage() throws Exception {
-        CommentsPagerWrapper pagerWrapper =
-                new CommentsPagerWrapper(commonFunctions, commonFunctions.getElement(COMMENTS_PAGER));
-        CommentsListPage nextPage = pagerWrapper.gotoNextPage();
-        return nextPage;
-    }
 
 }
