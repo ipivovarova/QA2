@@ -2,7 +2,6 @@ package pages.delfiRu;
 
 import com.google.common.base.Function;
 import com.google.common.base.Optional;
-import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 import core.CommonFunctions;
 import org.apache.log4j.Logger;
@@ -10,7 +9,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -70,15 +68,12 @@ public class HomePage {
      *
      * @return - selected article item wrapper
      */
-/*    public TopArticleWrapper getArticleByName(final String name) {
-        Optional<TopArticleWrapper> wrapper = Iterables.tryFind(getAllTopArticles(), new Predicate<TopArticleWrapper>() {
-            public boolean apply(TopArticleWrapper topArticleWrapper) {
-                return topArticleWrapper.getArticleName().equalsIgnoreCase(name);
-            }
-        });
+    public TopArticleWrapper getArticleByName(final String name) {
+        Optional<TopArticleWrapper> wrapper = Iterables.tryFind(getAllTopArticles(),
+                topArticleWrapper -> topArticleWrapper.getArticleName().equalsIgnoreCase(name));
         return wrapper.get();
     }
-*/
+
 
     /**
      * Method returns article wrapper by name
@@ -87,17 +82,17 @@ public class HomePage {
      *
      * @return - selected article item wrapper
      */
-    public TopArticleWrapper getArticleByName(final String name) throws NullPointerException {
-        List<TopArticleWrapper> topArticleWrappers = getAllTopArticles();
-        TopArticleWrapper article = null;
-        for (TopArticleWrapper topArticleWrapper: topArticleWrappers) {
-            if (topArticleWrapper.getArticleName().contains(name)) {
-                article = topArticleWrapper;
-                break;
-            }
-        } 
-        return article;
-    }
+//    public TopArticleWrapper getArticleByName(final String name) throws NullPointerException {
+//        List<TopArticleWrapper> topArticleWrappers = getAllTopArticles();
+//        TopArticleWrapper article = null;
+//        for (TopArticleWrapper topArticleWrapper: topArticleWrappers) {
+//            if (topArticleWrapper.getArticleName().contains(name)) {
+//                article = topArticleWrapper;
+//                break;
+//            }
+//        }
+//        return article;
+//    }
 
 
     /**

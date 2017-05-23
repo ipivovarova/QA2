@@ -9,7 +9,6 @@ import org.junit.Test;
 import pages.delfiRu.ArticlePage;
 import pages.delfiRu.CommentsPage;
 import pages.delfiRu.HomePage;
-import webDriver.Browser;
 
 /**
  * Compare comments count from 3 sources:
@@ -25,7 +24,7 @@ public class TestArticleCommentCount {
     private static final Logger LOGGER = Logger.getLogger(DelfiTest.class);
 
     @Test
-    public void checkCommentCount() {
+    public void checkCommentCount() throws Exception {
 
         LOGGER.info("This test selects comment count of first article from home page," +
                 " go to this article and select comment count from article title. Compare those two values." +

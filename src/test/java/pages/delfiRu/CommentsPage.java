@@ -52,9 +52,9 @@ public class CommentsPage {
      */
     public int getTotalComment() {
         int totalCount = 0;
-        String buttonTitle = "";
-        String commentType = "";
-        String commentCountTitle = "";
+        String buttonTitle;
+        String commentType;
+        String commentCountTitle;
 
         List<CommentButtonWrapper> commentButtons = getCommentButtons();
         LOGGER.info("Size: " + commentButtons.size());
