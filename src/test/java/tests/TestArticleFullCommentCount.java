@@ -17,7 +17,7 @@ import pages.delfiRu.TopArticleWrapper;
 public class TestArticleFullCommentCount {
     private CommonFunctions commonFunctions = new CommonFunctions();
     private static final String WEB_SITE_URL = "http://rus.delfi.lv";
-    private static final String ARTICLE_NAME = "Каспаров: \"если бы я знал имя преемника Путина, он был бы уже мертв\"";
+    private static final String ARTICLE_NAME = "Каспаров: \"Если бы я знал имя преемника Путина, он был бы уже мертв\"";
     private static final Logger LOGGER = Logger.getLogger(DelfiTest.class);
 
     @Test

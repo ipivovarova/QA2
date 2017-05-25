@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class HomePage {
 
-    CommonFunctions commonFunctions;
+    private CommonFunctions commonFunctions;
 
     private static final Logger LOGGER = Logger.getLogger(HomePage.class);
 
@@ -70,7 +70,9 @@ public class HomePage {
      */
     public TopArticleWrapper getArticleByName(final String name) {
         Optional<TopArticleWrapper> wrapper = Iterables.tryFind(getAllTopArticles(),
-                topArticleWrapper -> topArticleWrapper.getArticleName().equalsIgnoreCase(name));
+                (TopArticleWrapper topArticleWrapper) -> {
+                    return topArticleWrapper.getArticleName().equalsIgnoreCase(name);
+                });
         return wrapper.get();
     }
 

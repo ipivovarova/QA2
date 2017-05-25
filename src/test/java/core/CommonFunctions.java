@@ -118,6 +118,20 @@ public class CommonFunctions {
     }
 
     /**
+     * Method checks if element is available in DOM
+     *
+     * @param element element to check
+     * @return true or false
+     */
+    public boolean isPresentElement(By element) {
+        List<WebElement> elements = webDriver.findElements(element);
+        if(elements.size() != 0) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * Method returns a list of elements with a specific locator
      *
      * @param element element locator to search

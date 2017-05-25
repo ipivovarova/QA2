@@ -86,13 +86,12 @@ public class CommentsPage {
             totalComments += commentListPage.getCommentsCount();
              // is exist a next page?
             if (commentListPage.isCommentsPager()) {
-                while (true) {
-                    try {
-                        CommentsPagerWrapper commentsPager = new CommentsPagerWrapper(commonFunctions);
-                        CommentsListPage nextPage = commentsPager.gotoNextPage();
-                        totalComments += nextPage.getCommentsCount();
-                    }
-                    catch (Exception e) {break;}
+                // find count of pages (the previous element before ">")
+                // commentListPage.getLastPage()
+                for (int i = 0; i < commentListPage.getLastPage(); i++) {
+                    CommentsPagerWrapper commentsPager = new CommentsPagerWrapper(commonFunctions);
+                    CommentsListPage nextPage = commentsPager.gotoNextPage();
+                    totalComments += nextPage.getCommentsCount();
                 }
             }
         }

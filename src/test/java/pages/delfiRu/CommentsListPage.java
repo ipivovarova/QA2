@@ -20,6 +20,7 @@ public class CommentsListPage {
     private static final By COMMENT = By.className("comment-content");
     private static final By COMMENT_REPLIES = By.className("comments-list-replies");
     private static final By COMMENTS_PAGER = By.className("comments-pager comments-pager-top");
+    private static final By COMMENTS_PAGER_PAGE = By.className("comments-pager-page");
     private static final Logger LOGGER = Logger.getLogger(HomePage.class);
 
     public CommentsListPage(CommonFunctions commonFunctions) {
@@ -64,9 +65,22 @@ public class CommentsListPage {
         return comments.size();
     }
 
+//    public boolean isCommentsPager() {
+//        boolean result = false;
+//        try {
+//            WebElement commentsPager = commonFunctions.getElement(COMMENTS_PAGER);
+//            result = true;
+//        }
+//        catch (Exception e) {
+//        }
+//        return result;
+//    }
+
     public boolean isCommentsPager() {
-        return commonFunctions.getElement(COMMENTS_PAGER).isEnabled();
+        return commonFunctions.isPresentElement(COMMENTS_PAGER_PAGE);
     }
 
-
+    public int getLastPage() {
+        return commonFunctions.findElements(COMMENTS_PAGER_PAGE).size();
+    }
 }

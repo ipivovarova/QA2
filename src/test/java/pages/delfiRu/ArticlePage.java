@@ -11,7 +11,7 @@ import org.openqa.selenium.WebElement;
 public class ArticlePage {
     private final CommonFunctions commonFunctions;
     public static final By COUNTER = By.className("comment-count");
-    private static final long WAIT_MILL = 30;
+    private static final long WAIT_MILL = 300;
     private static final By HEADER_ARTICLE = By.xpath("//h1[@class='article-title']");
     private static final By TITLE_ARTICLE = By.xpath("./span");
     private static final By COMMENT_COUNT = By.xpath("./a[@class='comment-count']");
@@ -43,8 +43,15 @@ public class ArticlePage {
      *
      * @return - string with comment count
      */
-    private String getArticleCommentCount() throws Exception {
-        return findArticleHeader().findElement(COMMENT_COUNT).getText();
+    private String getArticleCommentCount() {
+        String commentCount = "";
+        try {
+            commentCount = findArticleHeader().findElement(COMMENT_COUNT).getText();
+        }
+        catch (Exception e) {
+            // do nothing
+        }
+        return commentCount;
     }
 
     /*
@@ -52,9 +59,15 @@ public class ArticlePage {
      *
      * @return - comment count
      */
-    public int getCommentCount() throws Exception {
-        return commonFunctions.getCountFromString(getArticleCommentCount());
-
+    public int getCommentCount()  {
+        int commentCount = 0;
+        try {
+            commentCount = commonFunctions.getCountFromString(getArticleCommentCount());
+        }
+        catch (Exception e) {
+            // do nothing
+        }
+        return commentCount;
     }
 
     private void clickArticleCommentCount() {
